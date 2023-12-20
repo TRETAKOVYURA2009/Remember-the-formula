@@ -1,0 +1,122 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+/* ---- Remove Arrows/Spinners ---- */
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+/* ---- field styles ----*/
+
+.mont{
+  font-family: "MontExtralight";
+}
+
+/* ---- Fonts ---- */
+
+@font-face {
+  font-family: "MontExtralight";
+  src: url("../fonts/mont_heavydemo.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Cheque-Black";
+  src: url("../fonts/Cheque-Black.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "CinzelDecorative";
+  src: url("../fonts/CinzelDecorative-Bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Balans";
+  src: url("../fonts/Balans-Normal.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
+}
+
+
+#field :first-child :first-child .field-cell {
+  border-radius: 0.23rem 0 0 0;
+}
+
+#field :first-child :last-child .field-cell {
+  border-radius: 0 0.23rem 0 0;
+}
+
+
+#field :last-child :first-child .field-cell {
+  border-radius: 0 0 0 0.23rem;
+}
+
+#field :last-child :last-child .field-cell {
+  border-radius: 0 0 0.23rem 0;
+}
+
+.field-cell {
+  border: 2px solid;
+  border-color: #f3f3f3 #5e5e5e #5e5e5e #f3f3f3;
+  outline: 1px solid black;
+}
+.field-cell.opened{
+  border: 0;
+  outline: 1px solid black;
+}
+.field-cell.explosion{
+  background: #f20606;
+}
+
+/* ---- finished text ---- */
+
+.win{
+  font-family: "Cheque-Black";
+}
+
+.game-over{
+  font-family: "CinzelDecorative";
+}
+
+
+
+.balans {
+  font-family: "Balans";
+}
+
+.bg-homePage {
+  background-image: url(./backGrounds/whiteBricks.jpg);
+}
