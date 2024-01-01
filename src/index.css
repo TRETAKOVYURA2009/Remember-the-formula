@@ -120,3 +120,49 @@ input[type=number] {
 .bg-homePage {
   background-image: url(./backGrounds/whiteBricks.jpg);
 }
+
+
+
+
+
+
+
+
+
+/* ---styles for cards with formuls--- */
+.flip-card {
+  height: 1.75rem;
+  width: 1.75rem;
+  outline: 1px solid black;
+  border-radius: 0.23rem;
+}
+.flip-card-inner {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.3s;
+  border-radius: 0.23rem;
+}
+.flip-card-front,
+.flip-card-back {
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flip-card-back {
+  height: 100%;
+  transform: rotateY(180deg);
+  background-color: #fff700;
+  border-radius: 0.23rem;
+}
+.flip-card-front {
+  transform: rotateY(360deg);
+}
+.flip-card-inner.rotated{
+  transform: rotateY(180deg);
+}

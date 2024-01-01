@@ -1,5 +1,3 @@
 export * from "./HomePage"
-export * from "./EasyLevel"
-export * from "./NormalLevel"
-export * from "./HardLevel"
-export * from "./CustomLevel"
+export * from "./DynamicsLevel"
+export * from "./ElectrostaticsLevel"

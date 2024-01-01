@@ -18,7 +18,7 @@ export const HomePage: React.FC = () => {
           <div className="space-y-4 w-36">
             <div>
               <Button
-                colour="green"
+                colour="red"
                 onClick={() => navigate(PageLinks.easyLevel)}
               >
                 Easy
@@ -30,22 +30,6 @@ export const HomePage: React.FC = () => {
                 onClick={() => navigate(PageLinks.normalLevel)}
               >
                 Normal
-              </Button>
-            </div>
-            <div>
-              <Button
-                colour="red"
-                onClick={() => navigate(PageLinks.hardLevel)}
-              >
-                Hard
-              </Button>
-            </div>
-            <div>
-              <Button
-                colour="yellow"
-                onClick={() => navigate(PageLinks.customLevel)}
-              >
-                <b>Custom</b>
               </Button>
             </div>
           </div>

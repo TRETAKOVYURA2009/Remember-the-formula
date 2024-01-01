@@ -9,5 +9,4 @@ export enum GameStatus {
 export type FieldParams = {
   width: number
   height: number
-  countOfMines: number
 }

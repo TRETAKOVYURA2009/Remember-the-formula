@@ -1,11 +1,12 @@
 import React from "react"
 import { useNavigate } from "react-router-dom"
-import Game from "../components/Game"
 import PageLinks from "../types/pages"
 import Button from "../components/ui/Button"
 import { ReactComponent as BackIcon } from "../icons/backIcon.svg"
+import Game from "../components/Game"
+import { Themes } from "../types/themes"
 
-export const NormalLevel: React.FC = () => {
+export const DynamicsLevel: React.FC = () => {
   const navigate = useNavigate()
   return (
     <div className="pt-2 pl-2 h-screen">
@@ -19,8 +20,8 @@ export const NormalLevel: React.FC = () => {
       <div className="flex items-center justify-center">
         <ul>
           <h1 className="text-center text-2xl balans">MineSweeper</h1>
-          <h3 className="text-center text-xl mont">Normal level</h3>
-          <Game fieldWidth={16} fieldHeight={16} countOfMines={40} />
+          <h3 className="text-center text-xl mont">Easy level</h3>
+          <Game theme={Themes.dinamics} />
         </ul>
       </div>
     </div>

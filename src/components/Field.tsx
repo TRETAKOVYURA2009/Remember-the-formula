@@ -1,47 +1,32 @@
 import React from "react"
-import Cell from "./Cell"
 import { GameStatus } from "../types/game"
+import Card from "./Card"
+import { Themes } from "../types/themes"
 
 interface FieldProps {
   status: GameStatus
+  theme: Themes
   field: number[][]
   isOpenedMatrix: boolean[][]
-  isMarkedMatrix: boolean[][]
+  isOpenedMatrixVisiable: boolean[][]
   onCellOpen: (rowIndex: number, colIndex: number) => void
-  onNearbyOpen: (rowIndex: number, colIned: number) => void
-  onCellMark: (rowIndex: number, colIndex: number) => void
 }
 
 const Field: React.FC<FieldProps> = ({
   status,
+  theme,
   field,
   isOpenedMatrix,
-  isMarkedMatrix,
+  isOpenedMatrixVisiable,
   onCellOpen,
-  onNearbyOpen,
-  onCellMark,
 }) => {
   const handleCellClick = (
     event: React.MouseEvent<HTMLDivElement, MouseEvent>,
     rIndex: number,
     cIndex: number
   ) => {
-    if (event.nativeEvent.button === 0) {
-      if (!isOpenedMatrix[rIndex][cIndex] && !isMarkedMatrix[rIndex][cIndex]) {
-        onCellOpen(rIndex, cIndex)
-      } else if (
-        isOpenedMatrix[rIndex][cIndex] &&
-        !isMarkedMatrix[rIndex][cIndex] &&
-        field[rIndex][cIndex] > 0
-      ) {
-        onNearbyOpen(rIndex, cIndex)
-      }
-    } else if (
-      event.nativeEvent.button === 2 &&
-      !isOpenedMatrix[rIndex][cIndex] &&
-      status === GameStatus.started
-    ) {
-      onCellMark(rIndex, cIndex)
+    if (event.nativeEvent.button === 0 && !isOpenedMatrix[rIndex][cIndex]) {
+      onCellOpen(rIndex, cIndex)
     }
     event.preventDefault()
   }
@@ -54,11 +39,10 @@ const Field: React.FC<FieldProps> = ({
       {field.map((row, rIndex) => (
         <div className="flex">
           {row.map((value, cIndex) => (
-            <Cell
+            <Card
+              theme={theme}
+              isOpenedVisiable={isOpenedMatrixVisiable[rIndex][cIndex]}
               value={value}
-              isOpened={isOpenedMatrix[rIndex][cIndex]}
-              isMarked={isMarkedMatrix[rIndex][cIndex]}
-              isExplosion={field[rIndex][cIndex] === -2}
               onClick={(event) => handleCellClick(event, rIndex, cIndex)}
             />
           ))}
