@@ -1,20 +1,9 @@
-import getOpenedCellNewMatrix from "./getOpenedCellNewMatrix"
-import getNearbyOpenedCellsNewMatrix from "./getNearbyOpenedCellsNewMatrix"
-import { generateFieldMatrix, getMines } from "./generateField"
-import {
-  createMatrixWithValue,
-  countOpenedCells,
-  checkForVictory,
-  checkForGameOver,
-} from "./utils"
+import { generateFieldMatrix, getNumbers } from "./generateField"
+import { createMatrixWithValue, checkForVictory } from "./utils"
 
 export default {
-  getOpenedCellNewMatrix,
-  getNearbyOpenedCellsNewMatrix,
   generateFieldMatrix,
-  getMines,
+  getNumbers,
   createMatrixWithValue,
-  countOpenedCells,
   checkForVictory,
-  checkForGameOver,
 }

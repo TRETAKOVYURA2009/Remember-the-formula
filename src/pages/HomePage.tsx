@@ -9,27 +9,27 @@ export const HomePage: React.FC = () => {
     <div className="flex justify-center h-screen bg-homePage">
       <ul className="mt-28 text-center">
         <li>
-          <h1 className="text-4xl balans">MineSweeper</h1>
+          <h1 className="text-4xl balans">Remember the formula</h1>
         </li>
         <li>
-          <h3 className="text-2xl space-y-4 mont">Choose level</h3>
+          <h3 className="text-2xl space-y-4 mont">Выберете тему</h3>
         </li>
         <li className="flex justify-center">
           <div className="space-y-4 w-36">
-            <div>
+            <div className="w-40">
               <Button
                 colour="red"
-                onClick={() => navigate(PageLinks.easyLevel)}
+                onClick={() => navigate(PageLinks.dinamicLevel)}
               >
-                Easy
+                Динамика
               </Button>
             </div>
-            <div>
+            <div className="w-40">
               <Button
                 colour="blue"
-                onClick={() => navigate(PageLinks.normalLevel)}
+                onClick={() => navigate(PageLinks.electrostaticLevel)}
               >
-                Normal
+                Элекростатика
               </Button>
             </div>
           </div>

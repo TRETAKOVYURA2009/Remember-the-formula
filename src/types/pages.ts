@@ -1,10 +1,8 @@
 // eslint-disable-next-line no-shadow
 enum PageLinks {
   home = "/",
-  easyLevel = "/level/easy",
-  normalLevel = "/level/normal",
-  hardLevel = "/level/hard",
-  customLevel = "/level/custom",
+  dinamicLevel = "/level/dinamic",
+  electrostaticLevel = "/level/electrostatic",
 }
 
 export default PageLinks

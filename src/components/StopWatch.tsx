@@ -25,11 +25,11 @@ const StopWatch: React.FC<StopWatchProps> = ({ status }) => {
   }, [counter, status])
 
   return (
-    <div className="border-2 rounded-lg border-gray-950 w-20 text-center">
+    <div className="border-2 rounded-lg border-gray-950 w-24 h-10 text-center flex items-center justify-center">
       {!!timeUnits.minutes && (
-        <span className="mont text-lg">{`${timeUnits.minutes}:`}</span>
+        <span className="mont text-2xl">{`${timeUnits.minutes}:`}</span>
       )}
-      <span className="mont text-lg">{`${timeUnits.seconds}`}</span>
+      <span className="mont text-2xl">{`${timeUnits.seconds}`}</span>
     </div>
   )
 }

@@ -1,6 +1,4 @@
-// a new component of game
-
-import React, { useEffect, useMemo, useState } from "react"
+import React, { useMemo, useState } from "react"
 import logic from "../gameLogic"
 import { GameStatus, FieldParams } from "../types/game"
 import Button from "./ui/Button"
@@ -14,8 +12,8 @@ interface GameProps {
 
 const Game: React.FC<GameProps> = ({ theme }) => {
   const [fieldParams, setFieldParams] = useState<FieldParams>({
-    width: 4,
-    height: 3,
+    width: 5,
+    height: 4,
   })
   const [isOpenedMatrix, setIsOpenedMatrix] = useState<boolean[][]>(
     logic.createMatrixWithValue(false, fieldParams.width, fieldParams.height)
@@ -40,18 +38,10 @@ const Game: React.FC<GameProps> = ({ theme }) => {
   // eslint-disable-next-line no-undef
   const [timerId, setTimerId] = useState<NodeJS.Timeout>()
 
-  // const setGameOver = (rowIndex: number, colIndex: number) => {
-  //   setStatus(GameStatus.gameOver)
-  //   setIsOpenedMatrix(
-  //     logic.createMatrixWithValue(true, fieldParams.width, fieldParams.height)
-  //   )
-  // }
-
   const openCell = (rowIndex: number, colIndex: number, fIeld: number[][]) => {
+    const newIsOpenedMatrix = [...isOpenedMatrix]
+    const newIsOpenedMatrixVisiable = [...isOpenedMatrixVisiable]
     if (seriesCount === 0) {
-      const newIsOpenedMatrix = [...isOpenedMatrix]
-      const newIsOpenedMatrixVisiable = [...isOpenedMatrixVisiable]
-
       if (coordsFirstCard && coordsSecondCard) {
         clearTimeout(timerId)
         if (coordsFirstCard && coordsSecondCard) {
@@ -73,14 +63,22 @@ const Game: React.FC<GameProps> = ({ theme }) => {
       setCoordsFirstCard([rowIndex, colIndex])
     } else if (coordsFirstCard) {
       const newCoordsSecondCard = [rowIndex, colIndex]
-      if (
-        field[coordsFirstCard[0]][coordsFirstCard[1]] ===
-        field[newCoordsSecondCard[0]][newCoordsSecondCard[1]]
-      ) {
-        const newIsOpenedMatrix = [...isOpenedMatrix]
-        const newIsOpenedMatrixVisiable = [...isOpenedMatrixVisiable]
+      const numberBehindFirstCard =
+        field[coordsFirstCard[0]][coordsFirstCard[1]]
+      const numberBehindFirstCardPotential = numberBehindFirstCard + 10
 
+      const numberBehindSecondCard =
+        field[newCoordsSecondCard[0]][newCoordsSecondCard[1]]
+      const numberBehindSecondCardPotential = numberBehindSecondCard + 10
+      if (
+        numberBehindFirstCard === numberBehindSecondCardPotential ||
+        numberBehindFirstCardPotential === numberBehindSecondCard
+      ) {
         setSeriesCount(0)
+        const newOpenedPairsCount = openedPairsCount + 1
+        if (newOpenedPairsCount === 10) {
+          setStatus(GameStatus.finished)
+        }
         setOpenedPairsCount(openedPairsCount + 1)
 
         newIsOpenedMatrix[newCoordsSecondCard[0]][newCoordsSecondCard[1]] = true
@@ -92,9 +90,6 @@ const Game: React.FC<GameProps> = ({ theme }) => {
         setIsOpenedMatrixVisiable(newIsOpenedMatrixVisiable)
         setCoordsFirstCard(null)
       } else {
-        const newIsOpenedMatrix = [...isOpenedMatrix]
-        const newIsOpenedMatrixVisiable = [...isOpenedMatrixVisiable]
-
         newIsOpenedMatrix[coordsFirstCard[0]][coordsFirstCard[1]] = false
         newIsOpenedMatrix[newCoordsSecondCard[0]][newCoordsSecondCard[1]] =
           false
@@ -117,18 +112,19 @@ const Game: React.FC<GameProps> = ({ theme }) => {
             newCoordsSecondCard[1]
           ] = false
           setIsOpenedMatrixVisiable(newISOpenedMatrixVisiable)
-        }, 900)
+        }, 1500)
         setTimerId(timer)
       }
     }
   }
 
   const generateField = (rowIndex: number, colIndex: number) => {
-    const newField = [
-      [0, 0, 1, 1],
-      [2, 2, 3, 3],
-      [4, 4, 5, 5],
-    ]
+    const newField = logic.generateFieldMatrix(
+      fieldParams.height,
+      fieldParams.width,
+      logic.getNumbers()
+    )
+    setStatus(GameStatus.started)
     setField(newField)
     openCell(rowIndex, colIndex, newField)
   }
@@ -142,33 +138,28 @@ const Game: React.FC<GameProps> = ({ theme }) => {
   }
 
   const restartGame = () => {
-    const newIsOpenedMatrixVisiable = [
-      [false, false, false, false],
-      [false, false, false, false],
-      [false, false, false, false],
-    ]
-    const newIsOpenedMatrix = [
-      [false, false, false, false],
-      [false, false, false, false],
-      [false, false, false, false],
-    ]
-    setIsOpenedMatrix(newIsOpenedMatrix)
-    setIsOpenedMatrixVisiable(newIsOpenedMatrixVisiable)
+    setIsOpenedMatrix(
+      logic.createMatrixWithValue(false, fieldParams.width, fieldParams.height)
+    )
+    setIsOpenedMatrixVisiable(
+      logic.createMatrixWithValue(false, fieldParams.width, fieldParams.height)
+    )
+    setField(
+      logic.createMatrixWithValue(0, fieldParams.width, fieldParams.height)
+    )
+    setOpenedPairsCount(0)
+    setSeriesCount(0)
+    setCoordsFirstCard(null)
+    setCoordsSecondCard(null)
+    setStatus(GameStatus.notStarted)
   }
 
-  const gameStatusLabel = useMemo(
-    () => logic.checkForGameOver(status),
-    [status]
-  )
+  const gameStatusLabel = useMemo(() => logic.checkForVictory(status), [status])
 
   return (
     <div className="flex items-center flex-col">
       <StopWatch status={status} />
-      <h1
-        className={`text-center ${
-          status === 3 ? "win text-lg mb-1" : "game-over mb-2"
-        }`}
-      >
+      <h1 className={`text-center ${status === 2 ? "win text-2xl mb-1" : ""}`}>
         {gameStatusLabel || <span>&nbsp;</span>}
       </h1>
       <Field

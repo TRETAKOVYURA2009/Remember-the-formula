@@ -1,62 +1,57 @@
-import { fieldIndexToCoords, getRandNumber } from "./utils"
+import { createMatrixWithValue, getRandNumber } from "./utils"
 
-function checkMineInArea(
-  playerX: number,
-  playerY: number,
-  mineX: number,
-  mineY: number
-) {
-  return Math.abs(playerX - mineX) < 2 && Math.abs(playerY - mineY) < 2
+export interface LoosObject {
+  [key: string]: any
 }
 
-export function getMines(
-  rowIndex: number,
-  colIndex: number,
-  width: number,
-  height: number,
-  mines: number
-) {
-  const minesPositions: number[] = []
-  for (let i = 0; i < mines; i++) {
-    while (true) {
-      const newIndex = getRandNumber(0, width * height - 1)
-      const { Y: mineY, X: mineX } = fieldIndexToCoords(newIndex, width)
-      if (
-        !minesPositions.includes(newIndex) &&
-        !checkMineInArea(colIndex, rowIndex, mineX, mineY)
-      ) {
-        minesPositions.push(newIndex)
-        break
-      }
-    }
+export function getNumbers() {
+  const c: LoosObject = {
+    "0": 0,
+    "1": 1,
+    "2": 2,
+    "3": 3,
+    "4": 4,
+    "5": 5,
+    "6": 6,
+    "7": 7,
+    "8": 8,
+    "9": 9,
+    "10": 10,
+    "11": 11,
+    "12": 12,
+    "13": 13,
+    "14": 14,
+    "15": 15,
+    "16": 16,
+    "17": 17,
+    "18": 18,
+    "19": 19,
   }
-  return minesPositions
+  let len = 19
+  const result = []
+  for (let i = 0; i < 20; i++) {
+    const x = getRandNumber(20 - i)
+    result.push(c[`${x}`])
+    for (let j = x; j < len; j++) {
+      c[`${j}`] = c[`${j + 1}`]
+    }
+    len -= 1
+  }
+  return result
 }
 
 export function generateFieldMatrix(
   fieldHeight: number,
   fieldWidth: number,
-  mines: number[]
+  Numbers: number[]
 ) {
-  const field = Array(fieldHeight)
-    .fill(null)
-    .map(() => Array(fieldWidth).fill(0))
-  mines.forEach((mineIndex) => {
-    const { Y: mineY, X: mineX } = fieldIndexToCoords(mineIndex, fieldWidth)
-    field[mineY][mineX] = -1
-    for (let y = mineY - 1; y < mineY + 2; y++) {
-      for (let x = mineX - 1; x < mineX + 2; x++) {
-        if (
-          x >= 0 &&
-          x < fieldWidth &&
-          y >= 0 &&
-          y < fieldHeight &&
-          field[y][x] !== -1
-        ) {
-          field[y][x]++
-        }
-      }
+  let indexOfNumber = 0
+  const field: number[][] = createMatrixWithValue(0, fieldWidth, fieldHeight)
+  for (let i = 0; i < fieldHeight; i++) {
+    for (let j = 0; j < fieldWidth; j++) {
+      field[i][j] = Numbers[indexOfNumber]
+      indexOfNumber += 1
     }
-  })
+  }
   return field
 }

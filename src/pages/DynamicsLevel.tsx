@@ -19,8 +19,8 @@ export const DynamicsLevel: React.FC = () => {
       </div>
       <div className="flex items-center justify-center">
         <ul>
-          <h1 className="text-center text-2xl balans">MineSweeper</h1>
-          <h3 className="text-center text-xl mont">Easy level</h3>
+          <h1 className="text-center text-3xl balans">Remember the formula</h1>
+          <h3 className="text-center text-2xl mont">Динамика</h3>
           <Game theme={Themes.dinamics} />
         </ul>
       </div>

@@ -7,8 +7,11 @@ const App: React.FC = () => (
   <HashRouter>
     <Routes>
       <Route path={PageLinks.home} element={<HomePage />} />
-      <Route path={PageLinks.easyLevel} element={<DynamicsLevel />} />
-      <Route path={PageLinks.normalLevel} element={<ElectrostaticsLevel />} />
+      <Route path={PageLinks.dinamicLevel} element={<DynamicsLevel />} />
+      <Route
+        path={PageLinks.electrostaticLevel}
+        element={<ElectrostaticsLevel />}
+      />
     </Routes>
   </HashRouter>
 )
