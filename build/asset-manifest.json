@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Remember-the-formula/static/css/main.689ddd87.css",
+    "main.js": "/Remember-the-formula/static/js/main.e78c4d07.js",
+    "static/js/787.28cb0dcd.chunk.js": "/Remember-the-formula/static/js/787.28cb0dcd.chunk.js",
+    "static/media/mont_heavydemo.ttf": "/Remember-the-formula/static/media/mont_heavydemo.daa26bfb63618aad17f7.ttf",
+    "static/media/whiteBricks.jpg": "/Remember-the-formula/static/media/whiteBricks.83a895ab9e67623a81e8.jpg",
+    "static/media/cardsBg.png": "/Remember-the-formula/static/media/cardsBg.166d6ad02835a8fe9685.png",
+    "static/media/CinzelDecorative-Bold.ttf": "/Remember-the-formula/static/media/CinzelDecorative-Bold.2231352722daaa24f611.ttf",
+    "static/media/Cheque-Black.ttf": "/Remember-the-formula/static/media/Cheque-Black.bbe126727b4e9d54aea5.ttf",
+    "static/media/Balans-Normal.ttf": "/Remember-the-formula/static/media/Balans-Normal.399b51853eefb4eaea6c.ttf",
+    "static/media/backIcon.svg": "/Remember-the-formula/static/media/backIcon.7c8eca84f55f61ba2391e9ac2b7b1ef4.svg",
+    "index.html": "/Remember-the-formula/index.html",
+    "main.689ddd87.css.map": "/Remember-the-formula/static/css/main.689ddd87.css.map",
+    "main.e78c4d07.js.map": "/Remember-the-formula/static/js/main.e78c4d07.js.map",
+    "787.28cb0dcd.chunk.js.map": "/Remember-the-formula/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.689ddd87.css",
+    "static/js/main.e78c4d07.js"
+  ]
+}
